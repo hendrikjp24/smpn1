@@ -6,10 +6,14 @@ const port = 3000;
 
 app.set("view engine", "ejs");
 app.use(expressLayouts);
+app.use(express.static('public'));
 
 // route default / index
 app.get("/", (req, res)=>{
-    res.send("Hello World");
+    res.render("index", {
+        title: "Home Page",
+        layout: "layouts/main-layout"
+    })
 })
 
 
