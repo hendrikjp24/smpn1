@@ -16,6 +16,13 @@ app.get("/", (req, res)=>{
     })
 })
 
+app.get("/about", (req, res)=>{
+    res.render("about", {
+        title: "About SMPN 1 TAPHIL",
+        layout: "layouts/main-layout"
+    });
+})
+
 
 app.listen(port, ()=>{
     console.log(`Listening at http://localhost:${port}`);
