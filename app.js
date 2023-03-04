@@ -23,6 +23,13 @@ app.get("/about", (req, res)=>{
     });
 })
 
+app.get("/visi", (req, res)=>{
+    res.render("visi_misi", {
+        title: "Visi dan Misi",
+        layout: "layouts/main-layout"
+    });
+})
+
 
 app.listen(port, ()=>{
     console.log(`Listening at http://localhost:${port}`);
