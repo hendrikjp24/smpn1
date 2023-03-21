@@ -59,6 +59,14 @@ app.get("/pengumuman", (req, res)=>{
     });
 })
 
+// PAGE JADWAL UJIAN
+app.get("/jadwal-ujian", (req, res)=>{
+    res.render("ujian", {
+        title: "Page Jadwal Ujian",
+        layout: "layouts/main-layout"
+    });
+})
+
 app.listen(port, ()=>{
     console.log(`Listening at http://localhost:${port}`);
 });
