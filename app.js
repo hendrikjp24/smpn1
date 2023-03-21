@@ -51,6 +51,13 @@ app.get("/ppdb", (req, res)=>{
     });
 }) 
 
+// PENGUMUMAN PAGE
+app.get("/pengumuman", (req, res)=>{
+    res.render("pengumuman", {
+        title: "Page Pengumuman",
+        layout: "layouts/main-layout"
+    });
+})
 
 app.listen(port, ()=>{
     console.log(`Listening at http://localhost:${port}`);
