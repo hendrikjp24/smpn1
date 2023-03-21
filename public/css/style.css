@@ -17,11 +17,15 @@ html,body {
 }
 
 .main-body {
-    padding-bottom: 10rem;
+    padding-bottom: 13rem;
 }
 
 footer {
     position: absolute;
     bottom: 0px;
     width: 100%;
+}
+
+.hide {
+    display: none;
 }

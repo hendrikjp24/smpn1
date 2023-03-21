@@ -5,9 +5,9 @@
     </div>
 
     <!-- FORM START  -->
-    <form class="row g-3">
-        <!-- TAHUN AJARAN -->
-        <div class="col-md-2">
+    <form class="row mt-3">
+        <!-- TAHUN AJARA -->
+        <div class="col-md-2 mb-2">
           <label for="inputState" class="form-label">Tahun Ajaran</label>
           <select id="inputState" class="form-select">
             <option selected disabled>Choose...</option>
@@ -18,7 +18,7 @@
         </div>
 
         <!-- KELAS -->
-        <div class="col-md-2">
+        <div class="col-md-2 mb-2">
           <label for="inputState" class="form-label">Kelas</label>
           <select id="inputState" class="form-select">
             <option selected disabled>Choose...</option>
@@ -29,7 +29,7 @@
         </div>
 
         <!-- GRUP KELAS -->
-        <div class="col-md-2">
+        <div class="col-md-2 mb-2">
             <label for="inputEmail4" class="form-label">Group Kelas</label>
             <input type="text" placeholder="Example : A" class="form-control" id="inputEmail4">
           </div>
@@ -43,8 +43,43 @@
               <option>Genap</option>
             </select>
           </div>
-        <div class="col-12">
-          <button type="submit" class="btn btn-primary">Sign in</button>
+
+        <div class="col-md-1">
+          <label for="btnSubmit" class="form-label" style="color: white;">as</label>
+          <button type="submit" class="btn form-control btn-primary" id="btnSubmit">Cari</button>
         </div>
-      </form>
+    </form>
+
+</div>
+
+<!-- LIST DAFTAR UJIAN JIKA DATA DITEMUKAN -->
+<div class="container-fluid table-ujian hide">
+      <!-- List Daftar Ujian -->
+      <div class="row justify-content-center mt-5">
+        <div class="col-md-11 table-responsive">
+          <table class="table table-bordered table-sm">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Hari/Tanggal</th>
+                <th scope="col">Mata Pelajaran</th>
+                <th scope="col">Jam</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" rowspan="2">1</th>
+                <td rowspan="2" class="m-auto">Senin, 24 Januari 2021</td>
+                <td>Bahasa Indonesia</td>
+                <td>08.00 - 10.00</td>
+              </tr>
+              <tr>
+                <!-- <th scope="row">2</th> -->
+                <td>Bahasa Inggris</td>
+                <td>10.30 - 12.30</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 </div>
