@@ -43,6 +43,14 @@ app.get("/contact", (req, res)=>{
 
 })
 
+// PPDB PAGE
+app.get("/ppdb", (req, res)=>{
+    res.render("ppdb", {
+        title: "PPDB PAGE",
+        layout: "layouts/main-layout"
+    });
+}) 
+
 
 app.listen(port, ()=>{
     console.log(`Listening at http://localhost:${port}`);

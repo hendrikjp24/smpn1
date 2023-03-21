@@ -2,6 +2,26 @@ section {
     padding-top: 5rem;
 }
 
+html,body {
+    height: 100%;
+}
+
+
 #about {
     background-color: #e2edff;
+}
+
+.wrapper {
+    min-height: 100%;
+    position: relative;
+}
+
+.main-body {
+    padding-bottom: 10rem;
+}
+
+footer {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
 }
