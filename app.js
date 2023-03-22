@@ -1,5 +1,10 @@
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+const flash = require("connect-flash");
+const bodyParser = require("body-parser");
+
 
 const app = express();
 const port = 3000;
@@ -7,6 +12,16 @@ const port = 3000;
 app.set("view engine", "ejs");
 app.use(expressLayouts);
 app.use(express.static('public'));
+app.use(session({
+    secret: "secret",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {maxAge: 6000}
+}));
+app.use(cookieParser("secret"));
+app.use(flash());
+app.use(bodyParser.urlencoded({extended: true}));
+
 
 // route default / index
 // PAGE HOME PAGE
@@ -63,8 +78,33 @@ app.get("/pengumuman", (req, res)=>{
 app.get("/jadwal-ujian", (req, res)=>{
     res.render("ujian", {
         title: "Page Jadwal Ujian",
-        layout: "layouts/main-layout"
+        layout: "layouts/main-layout",
+        status: req.flash('status'),
+        detail: req.body
     });
+})
+
+// post jadwal ujian
+let jmlahData = 0;
+app.post("/jadwal-ujian", (req, res)=>{
+    if (jmlahData > 0){
+        req.flash('status', "Berhasil");
+        res.render("ujian", {
+            title: "Page Jadwal Ujian",
+            layout: "layouts/main-layout",
+            detail: req.body,
+            status: req.flash('status')
+        })
+    }else{
+        res.render("ujian", {
+            title: "Page Jadwal Ujian",
+            layout: "layouts/main-layout",
+            detail: req.body,
+            status: req.flash('status')
+        })
+        
+    }
+    jmlahData++;
 })
 
 app.listen(port, ()=>{

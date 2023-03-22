@@ -5,42 +5,42 @@
     </div>
 
     <!-- FORM START  -->
-    <form class="row mt-3">
+    <form class="row mt-3" action="/jadwal-ujian" method="post">
         <!-- TAHUN AJARA -->
         <div class="col-md-2 mb-2">
           <label for="inputState" class="form-label">Tahun Ajaran</label>
-          <select id="inputState" class="form-select">
-            <option selected disabled>Choose...</option>
-            <option>2022/2023</option>
-            <option>2021/2022</option>
-            <option>2020/2021</option>
+          <select id="inputState" name="tahun" class="form-select">
+            <option <%= (detail.tahun) ? "" : "selected" %> disabled>Choose...</option>
+            <option <%= (detail.tahun == "2022/2023") ? "selected" : "" %> value="2022/2023">2022/2023</option>
+            <option <%= (detail.tahun == "2021/2022") ? "selected" : "" %> value="2021/2022">2021/2022</option>
+            <option <%= (detail.tahun == "2020/2021") ? "selected" : "" %> value="2020/2021">2020/2021</option>
           </select>
         </div>
 
         <!-- KELAS -->
         <div class="col-md-2 mb-2">
           <label for="inputState" class="form-label">Kelas</label>
-          <select id="inputState" class="form-select">
-            <option selected disabled>Choose...</option>
-            <option>VII</option>
-            <option>VIII</option>
-            <option>IX</option>
+          <select id="inputState" name="kelas" class="form-select">
+            <option <%= (detail.tahun) ? "" : "selected" %> disabled>Choose...</option>
+            <option <%= (detail.kelas == "VII") ? "selected" : "" %> value="VII">VII</option> 
+            <option <%= (detail.kelas == "VIII") ? "selected" : "" %> value="VIII">VIII</option>
+            <option <%= (detail.kelas == "IX") ? "selected" : "" %> value="IX">IX</option>
           </select>
         </div>
 
         <!-- GRUP KELAS -->
         <div class="col-md-2 mb-2">
             <label for="inputEmail4" class="form-label">Group Kelas</label>
-            <input type="text" placeholder="Example : A" class="form-control" id="inputEmail4">
+            <input type="text" value="<%= (detail.grupKelas) ? detail.grupKelas : "" %>" name="grupKelas" placeholder="Example : A" class="form-control" id="inputEmail4">
           </div>
 
           <!-- SEMESTER -->
           <div class="col-md-2">
             <label for="inputState" class="form-label">Semester</label>
-            <select id="inputState" class="form-select">
-              <option selected disabled>Choose...</option>
-              <option>Ganjil</option>
-              <option>Genap</option>
+            <select id="inputState" name="semester" class="form-select">
+              <option <%= (detail.semester) ? "" : "selected" %> disabled>Choose...</option>
+              <option <%= (detail.semester == "Ganjil") ? "selected" : "" %> value="Ganjil">Ganjil</option>
+              <option <%= (detail.semester == "Genap") ? "selected" : "" %>  value="Genap">Genap</option>
             </select>
           </div>
 
@@ -52,34 +52,37 @@
 
 </div>
 
-<!-- LIST DAFTAR UJIAN JIKA DATA DITEMUKAN -->
-<div class="container-fluid table-ujian hide">
-      <!-- List Daftar Ujian -->
-      <div class="row justify-content-center mt-5">
-        <div class="col-md-11 table-responsive">
-          <table class="table table-bordered table-sm">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Hari/Tanggal</th>
-                <th scope="col">Mata Pelajaran</th>
-                <th scope="col">Jam</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row" rowspan="2">1</th>
-                <td rowspan="2" class="m-auto">Senin, 24 Januari 2021</td>
-                <td>Bahasa Indonesia</td>
-                <td>08.00 - 10.00</td>
-              </tr>
-              <tr>
-                <!-- <th scope="row">2</th> -->
-                <td>Bahasa Inggris</td>
-                <td>10.30 - 12.30</td>
-              </tr>
-            </tbody>
-          </table>
+<% if (status.length !== 0) { %>
+  <!-- LIST DAFTAR UJIAN JIKA DATA DITEMUKAN -->
+  <div class="container-fluid table-ujian">
+        <!-- List Daftar Ujian -->
+        <div class="row justify-content-center mt-5">
+          <div class="col-md-11 table-responsive">
+            <table class="table table-bordered table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Hari/Tanggal</th>
+                  <th scope="col">Mata Pelajaran</th>
+                  <th scope="col">Jam</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row" rowspan="2">1</th>
+                  <td rowspan="2" class="m-auto">Senin, 24 Januari 2021</td>
+                  <td>Bahasa Indonesia</td>
+                  <td>08.00 - 10.00</td>
+                </tr>
+                <tr>
+                  <!-- <th scope="row">2</th> -->
+                  <td>Bahasa Inggris</td>
+                  <td>10.30 - 12.30</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
-</div>
+  </div>
+
+<% } %>
