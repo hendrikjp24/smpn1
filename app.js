@@ -14,7 +14,7 @@ app.use(expressLayouts);
 app.use(express.static('public'));
 app.use(session({
     secret: "secret",
-    resave: false,
+    resave: true,
     saveUninitialized: true,
     cookie: {maxAge: 6000}
 }));
@@ -80,7 +80,12 @@ app.get("/jadwal-ujian", (req, res)=>{
         title: "Page Jadwal Ujian",
         layout: "layouts/main-layout",
         status: req.flash('status'),
-        detail: req.body
+        detail: req.body,
+        progress: req.flash('progres'),
+        tahun: req.flash('tahun'),
+        kelas: req.flash('kelas'),
+        grupKelas: req.flash('grupKelas'),
+        semester: req.flash('semester')
     });
 })
 
@@ -89,19 +94,26 @@ let jmlahData = 0;
 app.post("/jadwal-ujian", (req, res)=>{
     if (jmlahData > 0){
         req.flash('status', "Berhasil");
-        res.render("ujian", {
-            title: "Page Jadwal Ujian",
-            layout: "layouts/main-layout",
-            detail: req.body,
-            status: req.flash('status')
-        })
+        req.flash('progres', 'Pencarian');
+        
+        // data from form
+        req.flash('tahun', req.body.tahun);
+        req.flash('kelas', req.body.kelas);
+        req.flash('grupKelas', req.body.grupKelas);
+        req.flash('semester', req.body.semester);
+
+
+        res.redirect("/jadwal-ujian");
+        
     }else{
-        res.render("ujian", {
-            title: "Page Jadwal Ujian",
-            layout: "layouts/main-layout",
-            detail: req.body,
-            status: req.flash('status')
-        })
+        req.flash('progres', 'Pencarian');
+        // data from form
+        req.flash('tahun', req.body.tahun);
+        req.flash('kelas', req.body.kelas);
+        req.flash('grupKelas', req.body.grupKelas);
+        req.flash('semester', req.body.semester);
+
+        res.redirect("/jadwal-ujian");
         
     }
     jmlahData++;

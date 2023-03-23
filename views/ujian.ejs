@@ -4,52 +4,101 @@
         <h1>Jadwal Ujian</h1>
     </div>
 
-    <!-- FORM START  -->
-    <form class="row mt-3" action="/jadwal-ujian" method="post">
-        <!-- TAHUN AJARA -->
-        <div class="col-md-2 mb-2">
-          <label for="inputState" class="form-label">Tahun Ajaran</label>
-          <select id="inputState" name="tahun" class="form-select">
-            <option <%= (detail.tahun) ? "" : "selected" %> disabled>Choose...</option>
-            <option <%= (detail.tahun == "2022/2023") ? "selected" : "" %> value="2022/2023">2022/2023</option>
-            <option <%= (detail.tahun == "2021/2022") ? "selected" : "" %> value="2021/2022">2021/2022</option>
-            <option <%= (detail.tahun == "2020/2021") ? "selected" : "" %> value="2020/2021">2020/2021</option>
-          </select>
-        </div>
-
-        <!-- KELAS -->
-        <div class="col-md-2 mb-2">
-          <label for="inputState" class="form-label">Kelas</label>
-          <select id="inputState" name="kelas" class="form-select">
-            <option <%= (detail.tahun) ? "" : "selected" %> disabled>Choose...</option>
-            <option <%= (detail.kelas == "VII") ? "selected" : "" %> value="VII">VII</option> 
-            <option <%= (detail.kelas == "VIII") ? "selected" : "" %> value="VIII">VIII</option>
-            <option <%= (detail.kelas == "IX") ? "selected" : "" %> value="IX">IX</option>
-          </select>
-        </div>
-
-        <!-- GRUP KELAS -->
-        <div class="col-md-2 mb-2">
-            <label for="inputEmail4" class="form-label">Group Kelas</label>
-            <input type="text" value="<%= (detail.grupKelas) ? detail.grupKelas : "" %>" name="grupKelas" placeholder="Example : A" class="form-control" id="inputEmail4">
-          </div>
-
-          <!-- SEMESTER -->
-          <div class="col-md-2">
-            <label for="inputState" class="form-label">Semester</label>
-            <select id="inputState" name="semester" class="form-select">
-              <option <%= (detail.semester) ? "" : "selected" %> disabled>Choose...</option>
-              <option <%= (detail.semester == "Ganjil") ? "selected" : "" %> value="Ganjil">Ganjil</option>
-              <option <%= (detail.semester == "Genap") ? "selected" : "" %>  value="Genap">Genap</option>
-            </select>
-          </div>
-
-        <div class="col-md-1">
-          <label for="btnSubmit" class="form-label" style="color: white;">as</label>
-          <button type="submit" class="btn form-control btn-primary" id="btnSubmit">Cari</button>
-        </div>
-    </form>
-
+    <% if (progress.length !== 0) { %>
+          <!-- FORM START BELUM DI RELOAD DAN MASIH DALAM PENCARIAN -->
+          <form class="row mt-3" action="/jadwal-ujian" method="post">
+              <!-- TAHUN AJARA -->
+              <div class="col-md-2 mb-2">
+                <label for="inputState" class="form-label">Tahun Ajaran</label>
+                <select id="inputState" name="tahun" class="form-select">
+                  <option disabled>Choose...</option>
+                  <option <%= (tahun == "2022/2023") ? "selected" : "" %> value="2022/2023">2022/2023</option>
+                  <option <%= (tahun == "2021/2022") ? "selected" : "" %> value="2021/2022">2021/2022</option>
+                  <option <%= (tahun == "2020/2021") ? "selected" : "" %> value="2020/2021">2020/2021</option>
+                </select>
+              </div>
+      
+              <!-- KELAS -->
+              <div class="col-md-2 mb-2">
+                <label for="inputState" class="form-label">Kelas</label>
+                <select id="inputState" name="kelas" class="form-select">
+                  <option disabled>Choose...</option>
+                  <option <%= (kelas == "VII") ? "selected" : "" %> value="VII">VII</option> 
+                  <option <%= (kelas == "VIII") ? "selected" : "" %> value="VIII">VIII</option>
+                  <option <%= (kelas == "IX") ? "selected" : "" %> value="IX">IX</option>
+                </select>
+              </div>
+      
+              <!-- GRUP KELAS -->
+              <div class="col-md-2 mb-2">
+                  <label for="inputEmail4" class="form-label">Group Kelas</label>
+                  <input type="text" value="<%= (grupKelas) ? grupKelas : "" %>" name="grupKelas" placeholder="Example : A" class="form-control" id="inputEmail4">
+                </div>
+      
+                <!-- SEMESTER -->
+                <div class="col-md-2">
+                  <label for="inputState" class="form-label">Semester</label>
+                  <select id="inputState" name="semester" class="form-select">
+                    <option disabled>Choose...</option>
+                    <option <%= (semester == "Ganjil") ? "selected" : "" %> value="Ganjil">Ganjil</option>
+                    <option <%= (semester == "Genap") ? "selected" : "" %>  value="Genap">Genap</option>
+                  </select>
+                </div>
+      
+              <div class="col-md-1">
+                <label for="btnSubmit" class="form-label" style="color: white;">as</label>
+                <button type="submit" class="btn form-control btn-primary" id="btnSubmit">Cari</button>
+              </div>
+          </form>
+          <!-- form end -->
+    <% } else { %>
+          <!-- FORM KETIKA SUDAH DI RELOAD || FORM PERTAMA KALI MUNCUL -->
+        <form class="row mt-3" action="/jadwal-ujian" method="post">
+            <!-- TAHUN AJARA -->
+            <div class="col-md-2 mb-2">
+              <label for="inputState" class="form-label">Tahun Ajaran</label>
+              <select id="inputState" name="tahun" class="form-select">
+                <option selected disabled>Choose...</option>
+                <option value="2022/2023">2022/2023</option>
+                <option value="2021/2022">2021/2022</option>
+                <option value="2020/2021">2020/2021</option>
+              </select>
+            </div>
+      
+            <!-- KELAS -->
+            <div class="col-md-2 mb-2">
+              <label for="inputState" class="form-label">Kelas</label>
+              <select id="inputState" name="kelas" class="form-select">
+                <option selected disabled>Choose...</option>
+                <option value="VII">VII</option> 
+                <option value="VIII">VIII</option>
+                <option value="IX">IX</option>
+              </select>
+            </div>
+      
+            <!-- GRUP KELAS -->
+            <div class="col-md-2 mb-2">
+                <label for="inputEmail4" class="form-label">Group Kelas</label>
+                <input type="text" name="grupKelas" placeholder="Example : A" class="form-control" id="inputEmail4">
+              </div>
+      
+              <!-- SEMESTER -->
+              <div class="col-md-2">
+                <label for="inputState" class="form-label">Semester</label>
+                <select id="inputState" name="semester" class="form-select">
+                  <option selected disabled>Choose...</option>
+                  <option value="Ganjil">Ganjil</option>
+                  <option value="Genap">Genap</option>
+                </select>
+              </div>
+      
+            <div class="col-md-1">
+              <label for="btnSubmit" class="form-label" style="color: white;">as</label>
+              <button type="submit" class="btn form-control btn-primary" id="btnSubmit">Cari</button>
+            </div>
+        </form>
+          <!-- form end -->
+    <% } %>
 </div>
 
 <% if (status.length !== 0) { %>
