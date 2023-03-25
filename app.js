@@ -119,6 +119,14 @@ app.post("/jadwal-ujian", (req, res)=>{
     jmlahData++;
 })
 
+// Page Detail Berita
+app.get("/detail-berita",(req, res)=>{
+    res.render('detail-berita', {
+        title: "Detail Berita",
+        layout: "layouts/main-layout"
+    });
+})
+
 app.listen(port, ()=>{
     console.log(`Listening at http://localhost:${port}`);
 });
