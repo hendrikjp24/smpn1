@@ -89,6 +89,15 @@ app.get("/jadwal-ujian", (req, res)=>{
     });
 })
 
+// Page all news
+app.get("/berita", (req, res)=>{
+    res.render("news", {
+        title: "Berita",
+        layout: "layouts/main-layout",
+        pagenation : 1
+    });
+})
+
 // post jadwal ujian
 let jmlahData = 0;
 app.post("/jadwal-ujian", (req, res)=>{
