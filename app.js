@@ -11,7 +11,7 @@ const port = 3000;
 
 app.set("view engine", "ejs");
 app.use(expressLayouts);
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 app.use(session({
     secret: "secret",
     resave: true,
@@ -94,9 +94,24 @@ app.get("/berita", (req, res)=>{
     res.render("news", {
         title: "Berita",
         layout: "layouts/main-layout",
-        pagenation : 1
+        pagenation: 0
     });
 })
+
+// Pagenation pada news
+app.get("/berita/:page", (req, res)=>{
+    
+    if(req.params.page === "0"){
+        res.redirect("/berita");
+    }else{
+        res.render("news", {
+            title: "Berita",
+            layout: "layouts/main-layout",
+            pagenation: req.params.page
+        });
+    }
+})
+
 
 // post jadwal ujian
 let jmlahData = 0;
