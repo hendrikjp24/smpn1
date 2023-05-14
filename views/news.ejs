@@ -103,10 +103,9 @@
         <!-- PAGENATION -->
         <div class="row">
             <div class="col-md-12 text-center justify-content-center">
-              <% if (pagenation !== 0) { %>
-                <a href="/berita/<%-pagenation++ %>" class="btn btn-danger col-md-1">Previous</a>
-              <% } %>
-                <a href="/berita/<%- ++pagenation %>" class="btn btn-danger col-md-1">Next</a>
+              
+                <a href="/berita/<%- pagenation %>" id="btprev" class="btn btn-danger col-md-1">Previous</a>
+                <a href="/berita/<%- pagenation %>" id="btnext" class="btn btn-danger col-md-1">Next</a>
             </div>
         </div>
     </div>
