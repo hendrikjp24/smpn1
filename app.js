@@ -33,6 +33,14 @@ app.get("/", (req, res)=>{
     })
 })
 
+// PAGE LOGIN
+app.get("/login", (req, res)=>{
+    res.render("login", {
+        title: "Login Page",
+        layout: "layouts/main-layout"
+    })
+})
+
 // PAGE PROFILE > TENTANG SEKOLAH
 app.get("/about", (req, res)=>{
     res.render("about", {
