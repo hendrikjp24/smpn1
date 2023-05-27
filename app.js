@@ -159,6 +159,18 @@ app.get("/detail-berita",(req, res)=>{
     });
 })
 
+// ADMIN PANEL
+app.post("/admin", (req, res)=>{
+    res.redirect("/admin");
+
+})
+
+app.get("/admin", (req, res)=>{
+    res.render("admin/test", {
+        layout: "admin/layouts/main-layout"
+    });
+})
+
 app.listen(port, ()=>{
     console.log(`Listening at http://localhost:${port}`);
 });
